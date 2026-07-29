@@ -7,6 +7,18 @@ import initialCommunity from '../data/community.json';
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
+  // Safe LocalStorage Parser to prevent crash if data is corrupted or from another site
+  const safeParse = (key, fallback) => {
+    try {
+      const value = localStorage.getItem(key);
+      if (!value || value === 'undefined') return fallback;
+      return JSON.parse(value);
+    } catch (e) {
+      console.error(`Error parsing localStorage key "${key}":`, e);
+      return fallback;
+    }
+  };
+
   // Theme State
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem('staynest_theme');
@@ -16,44 +28,38 @@ export const AppProvider = ({ children }) => {
 
   // User Auth State
   const [user, setUser] = useState(() => {
-    const savedUser = localStorage.getItem('staynest_user');
-    return savedUser ? JSON.parse(savedUser) : {
+    return safeParse('staynest_user', {
       name: "Siddharth Shinde",
       role: "Student",
       email: "siddharth.s@staynest.com",
       avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&q=80",
       college: "COEP College",
       budget: 6000
-    };
+    });
   });
 
   // Listings & Messes State (Local reactive database)
   const [listings, setListings] = useState(() => {
-    const savedListings = localStorage.getItem('staynest_listings');
-    return savedListings ? JSON.parse(savedListings) : initialListings;
+    return safeParse('staynest_listings', initialListings);
   });
 
   const [messes, setMesses] = useState(() => {
-    const savedMesses = localStorage.getItem('staynest_messes');
-    return savedMesses ? JSON.parse(savedMesses) : initialMesses;
+    return safeParse('staynest_messes', initialMesses);
   });
 
   // Roommate profiles
   const [roommates, setRoommates] = useState(() => {
-    const savedRoommates = localStorage.getItem('staynest_roommates');
-    return savedRoommates ? JSON.parse(savedRoommates) : initialRoommates;
+    return safeParse('staynest_roommates', initialRoommates);
   });
 
   // Community Posts
   const [communityPosts, setCommunityPosts] = useState(() => {
-    const savedPosts = localStorage.getItem('staynest_posts');
-    return savedPosts ? JSON.parse(savedPosts) : initialCommunity;
+    return safeParse('staynest_posts', initialCommunity);
   });
 
   // Wishlist (IDs of listing items)
   const [wishlist, setWishlist] = useState(() => {
-    const savedWishlist = localStorage.getItem('staynest_wishlist');
-    return savedWishlist ? JSON.parse(savedWishlist) : [];
+    return safeParse('staynest_wishlist', []);
   });
 
   // Compare List (Full room objects)
@@ -61,8 +67,7 @@ export const AppProvider = ({ children }) => {
 
   // Bookings state
   const [bookings, setBookings] = useState(() => {
-    const savedBookings = localStorage.getItem('staynest_bookings');
-    return savedBookings ? JSON.parse(savedBookings) : [
+    return safeParse('staynest_bookings', [
       {
         id: "b-1",
         listingId: "room-1",
@@ -72,7 +77,7 @@ export const AppProvider = ({ children }) => {
         status: "Confirmed",
         ownerPhone: "+91 98234 56789"
       }
-    ];
+    ]);
   });
 
   // Notifications
