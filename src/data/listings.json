@@ -1,0 +1,281 @@
+[
+  {
+    "id": "room-1",
+    "title": "Stanza Living Premium Unisex PG",
+    "type": "PG",
+    "city": "Pune",
+    "area": "Kothrud",
+    "college": "COEP College",
+    "company": "Tech Mahindra",
+    "rent": 8500,
+    "deposit": 15000,
+    "gender": "Unisex",
+    "sharing": "Double",
+    "rating": 4.8,
+    "distance": 0.8,
+    "safetyScore": 96,
+    "monthlyCostBreakdown": {
+      "rent": 8500,
+      "food": 3500,
+      "travel": 500
+    },
+    "amenities": ["WiFi", "AC", "Attached Bathroom", "Parking", "Food Included", "CCTV", "Laundromat"],
+    "images": [
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=600&q=80"
+    ],
+    "owner": {
+      "name": "Anil Deshmukh",
+      "phone": "+91 98234 56789",
+      "email": "anil.d@staynest.com",
+      "verified": true
+    },
+    "availableDate": "2026-08-01",
+    "description": "Premium unisex accommodation specifically designed for COEP students and young professionals. Comes with daily housekeeping, biometric security, and healthy home-style meals.",
+    "reviews": [
+      {
+        "studentName": "Rahul Sharma",
+        "college": "COEP College",
+        "rating": 5,
+        "comment": "Outstanding PG! The food quality is excellent compared to other local options, and the WiFi is super reliable."
+      },
+      {
+        "studentName": "Sneha Patil",
+        "college": "MIT WPU",
+        "rating": 4,
+        "comment": "Very safe for girls. The security staff is cooperative and the rooms are cleaned daily."
+      }
+    ],
+    "nearbyPlaces": [
+      { "name": "COEP Campus", "type": "College", "distance": "0.8 km" },
+      { "name": "Kothrud Metro Station", "type": "Transport", "distance": "0.4 km" },
+      { "name": "Noble Pharmacy", "type": "Medical", "distance": "0.2 km" },
+      { "name": "Star Gym", "type": "Gym", "distance": "0.5 km" }
+    ]
+  },
+  {
+    "id": "room-2",
+    "title": "Elite Girls Hostel & PG",
+    "type": "PG",
+    "city": "Pune",
+    "area": "Viman Nagar",
+    "college": "Symbiosis International",
+    "company": "TCS Sahyadri",
+    "rent": 6200,
+    "deposit": 10000,
+    "gender": "Girls",
+    "sharing": "Triple",
+    "rating": 4.6,
+    "distance": 1.2,
+    "safetyScore": 98,
+    "monthlyCostBreakdown": {
+      "rent": 6200,
+      "food": 3000,
+      "travel": 800
+    },
+    "amenities": ["WiFi", "Attached Bathroom", "Food Included", "CCTV", "Power Backup", "Washing Machine"],
+    "images": [
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?auto=format&fit=crop&w=600&q=80"
+    ],
+    "owner": {
+      "name": "Meera Joshi",
+      "phone": "+91 99754 38291",
+      "email": "meera.j@staynest.com",
+      "verified": true
+    },
+    "availableDate": "Immediate",
+    "description": "Safe, fully-furnished girls PG located in a prime residential area of Viman Nagar. Round-the-clock female warden, camera security, and pure veg food plans.",
+    "reviews": [
+      {
+        "studentName": "Kirti Sen",
+        "college": "Symbiosis",
+        "rating": 5,
+        "comment": "Extremely safe and clean. Warden is friendly and supportive."
+      }
+    ],
+    "nearbyPlaces": [
+      { "name": "Symbiosis Campus", "type": "College", "distance": "1.2 km" },
+      { "name": "Phoenix Marketcity", "type": "Cafe & Mall", "distance": "0.7 km" },
+      { "name": "Apollo Clinic", "type": "Hospital", "distance": "0.3 km" }
+    ]
+  },
+  {
+    "id": "room-3",
+    "title": "Modern 1BHK Student Studio",
+    "type": "Flat",
+    "city": "Mumbai",
+    "area": "Andheri West",
+    "college": "NMIMS University",
+    "company": "Jio offices",
+    "rent": 14000,
+    "deposit": 30000,
+    "gender": "Unisex",
+    "sharing": "Single",
+    "rating": 4.9,
+    "distance": 1.5,
+    "safetyScore": 92,
+    "monthlyCostBreakdown": {
+      "rent": 14000,
+      "food": 4000,
+      "travel": 1200
+    },
+    "amenities": ["WiFi", "AC", "Attached Bathroom", "Parking", "Kitchenette", "Gym access", "Geyser"],
+    "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=600&q=80"
+    ],
+    "owner": {
+      "name": "Sameer Khan",
+      "phone": "+91 97112 09845",
+      "email": "sameer.k@staynest.com",
+      "verified": false
+    },
+    "availableDate": "2026-08-15",
+    "description": "Sleek, modern studio flat with complete privacy. Ideal for self-studying students or working professionals. Includes modular kitchen, smart locks, and society gym membership.",
+    "reviews": [
+      {
+        "studentName": "Aditya Roy",
+        "college": "NMIMS",
+        "rating": 5,
+        "comment": "Perfect flat for focusing on studies. Sameer (owner) is helpful and respects privacy."
+      }
+    ],
+    "nearbyPlaces": [
+      { "name": "NMIMS Campus", "type": "College", "distance": "1.5 km" },
+      { "name": "Andheri Metro Station", "type": "Transport", "distance": "0.8 km" },
+      { "name": "Cafe Coffee Day", "type": "Cafe", "distance": "0.2 km" }
+    ]
+  },
+  {
+    "id": "room-4",
+    "title": "Saraswati Boys Hostel",
+    "type": "Hostel",
+    "city": "Kolhapur",
+    "area": "Rajaram Road",
+    "college": "KIT College of Engineering",
+    "company": "Industrial Estate",
+    "rent": 4500,
+    "deposit": 8000,
+    "gender": "Boys",
+    "sharing": "Double",
+    "rating": 4.4,
+    "distance": 0.5,
+    "safetyScore": 90,
+    "monthlyCostBreakdown": {
+      "rent": 4500,
+      "food": 2500,
+      "travel": 300
+    },
+    "amenities": ["WiFi", "Parking", "Water Cooler", "Study Tables", "Laundromat"],
+    "images": [
+      "https://images.unsplash.com/photo-1555854811-8a22706f50db?auto=format&fit=crop&w=600&q=80"
+    ],
+    "owner": {
+      "name": "Bhalchandra Patil",
+      "phone": "+91 94220 12345",
+      "email": "patil.hostel@gmail.com",
+      "verified": true
+    },
+    "availableDate": "Immediate",
+    "description": "Affordable student hostel situated right opposite KIT College. Spatially designed rooms with separate study tables, common recreation hall, and water purifiers.",
+    "reviews": [
+      {
+        "studentName": "Tejas Shinde",
+        "college": "KIT College",
+        "rating": 4,
+        "comment": "Best budget accommodation for KIT students. The location is the biggest advantage!"
+      }
+    ],
+    "nearbyPlaces": [
+      { "name": "KIT College Campus", "type": "College", "distance": "0.5 km" },
+      { "name": "Rajaram Lake Cafe", "type": "Cafe", "distance": "0.6 km" },
+      { "name": "Prasad Mess", "type": "Food", "distance": "0.1 km" }
+    ]
+  },
+  {
+    "id": "room-5",
+    "title": "Premium 2BHK Shared Flat",
+    "type": "Flat",
+    "city": "Bangalore",
+    "area": "Koramangala",
+    "college": "Christ University",
+    "company": "Flipkart HQ",
+    "rent": 11000,
+    "deposit": 25000,
+    "gender": "Unisex",
+    "sharing": "Double",
+    "rating": 4.7,
+    "distance": 1.1,
+    "safetyScore": 95,
+    "monthlyCostBreakdown": {
+      "rent": 11000,
+      "food": 4500,
+      "travel": 600
+    },
+    "amenities": ["WiFi", "AC", "Kitchenette", "Parking", "Power Backup", "Gym access", "Washing Machine"],
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=600&q=80"
+    ],
+    "owner": {
+      "name": "Srinivas Reddy",
+      "phone": "+91 98450 67321",
+      "email": "srinivas@staynest.com",
+      "verified": true
+    },
+    "availableDate": "2026-08-01",
+    "description": "Shared double-occupancy room in a premium 2BHK flat. Fully functional kitchen, cozy living room with smart TV, and high-speed fiber internet.",
+    "reviews": [],
+    "nearbyPlaces": [
+      { "name": "Christ University", "type": "College", "distance": "1.1 km" },
+      { "name": "Koramangala 80 Feet Rd", "type": "Food & Cafe", "distance": "0.3 km" },
+      { "name": "St. Johns Hospital", "type": "Hospital", "distance": "0.9 km" }
+    ]
+  },
+  {
+    "id": "room-6",
+    "title": "Vidyarthi Niwas Girls PG",
+    "type": "PG",
+    "city": "Sangli",
+    "area": "Vishrambag",
+    "college": "Willingdon College",
+    "company": "Infosys Link",
+    "rent": 3800,
+    "deposit": 6000,
+    "gender": "Girls",
+    "sharing": "Double",
+    "rating": 4.5,
+    "distance": 0.6,
+    "safetyScore": 94,
+    "monthlyCostBreakdown": {
+      "rent": 3800,
+      "food": 2200,
+      "travel": 200
+    },
+    "amenities": ["WiFi", "Parking", "Attached Bathroom", "Food Included", "CCTV"],
+    "images": [
+      "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?auto=format&fit=crop&w=600&q=80"
+    ],
+    "owner": {
+      "name": "Vidya Kulkarni",
+      "phone": "+91 95456 78912",
+      "email": "vidya.pg@gmail.com",
+      "verified": true
+    },
+    "availableDate": "Immediate",
+    "description": "Very economical girls PG near Willingdon College and WCE Sangli. Homely food cooked daily, separate study space, and secured gates with CCTV systems.",
+    "reviews": [
+      {
+        "studentName": "Priya Patil",
+        "college": "Willingdon College",
+        "rating": 5,
+        "comment": "Affordable, safe, and Vidya Aunty is very nice. Food feels like home."
+      }
+    ],
+    "nearbyPlaces": [
+      { "name": "Willingdon College", "type": "College", "distance": "0.6 km" },
+      { "name": "Vishrambag Railway Station", "type": "Transport", "distance": "0.9 km" }
+    ]
+  }
+]
