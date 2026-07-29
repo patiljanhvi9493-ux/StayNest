@@ -5,7 +5,7 @@ export default function MessCard({ mess }) {
   const [showContact, setShowContact] = useState(false);
 
   return (
-    <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800/80 rounded-[28px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full group">
+    <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800/80 rounded-[28px] overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-primary-500/5 dark:hover:shadow-primary-500/10 hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full group">
       
       {/* Thumbnail/Image Area */}
       <div className="relative aspect-[16/10] overflow-hidden bg-slate-150">
@@ -13,7 +13,7 @@ export default function MessCard({ mess }) {
           src={mess.images[0]} 
           alt={mess.title} 
           loading="lazy"
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
         />
 
         {/* Price tag */}
@@ -130,7 +130,7 @@ export default function MessCard({ mess }) {
               onClick={() => setShowContact(true)}
               className="w-full inline-flex items-center justify-center space-x-1.5 px-4 py-2.5 text-xs font-bold text-white bg-slate-900 hover:bg-primary-600 dark:bg-slate-800 dark:hover:bg-primary-600 rounded-xl transition-colors shadow-sm"
             >
-              <Phone className="w-3.5 h-3.5" />
+              <Phone className="w-3.5 h-3.5 group-hover:rotate-12 transition-transform duration-300" />
               <span>Contact Mess Owner</span>
             </button>
           )}

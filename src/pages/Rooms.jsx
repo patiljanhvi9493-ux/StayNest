@@ -251,8 +251,50 @@ export default function Rooms() {
         {/* Right Section: Listing Grid & Search bar */}
         <div className="lg:col-span-3 space-y-6">
           
+          {/* Quick Filters Ribbon */}
+          <div className="flex items-center space-x-2 overflow-x-auto no-scrollbar py-1 px-0.5 -mx-0.5">
+            {[
+              { label: 'Boys Stay', type: 'gender', value: 'Boys' },
+              { label: 'Girls Stay', type: 'gender', value: 'Girls' },
+              { label: 'WiFi Included', type: 'amenity', value: 'WiFi' },
+              { label: 'AC Rooms', type: 'amenity', value: 'AC' },
+              { label: 'Food Included', type: 'amenity', value: 'Food Included' },
+              { label: 'Attached Bath', type: 'amenity', value: 'Attached Bathroom' },
+              { label: 'PG / Hostels', type: 'style', value: 'PG' },
+              { label: 'Private Stays', type: 'style', value: 'Room' },
+            ].map((pill, idx) => {
+              let isActive = false;
+              if (pill.type === 'gender') isActive = gender === pill.value;
+              else if (pill.type === 'amenity') isActive = selectedAmenities.includes(pill.value);
+              else if (pill.type === 'style') isActive = type === pill.value;
+
+              return (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    if (pill.type === 'gender') {
+                      setGender(gender === pill.value ? '' : pill.value);
+                    } else if (pill.type === 'amenity') {
+                      handleAmenityChange(pill.value);
+                    } else if (pill.type === 'style') {
+                      setType(type === pill.value ? '' : pill.value);
+                    }
+                  }}
+                  className={`flex-shrink-0 px-4 py-2 rounded-full text-xs font-bold border transition-all cursor-pointer ${
+                    isActive 
+                      ? 'bg-primary-600 text-white border-primary-500 shadow-md shadow-primary-500/10 scale-95' 
+                      : 'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-350 dark:hover:border-slate-700 hover:scale-[1.02]'
+                  }`}
+                >
+                  {isActive && <span className="inline-block w-1.5 h-1.5 bg-white rounded-full mr-1.5 animate-scale-in" />}
+                  {pill.label}
+                </button>
+              );
+            })}
+          </div>
+
           {/* Top Search & Sort Controller */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[24px] p-4 shadow-sm flex flex-col sm:flex-row gap-4 items-center justify-between">
+          <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[24px] p-4 shadow-sm flex flex-col sm:flex-row gap-4 items-center justify-between animate-fade-in">
             
             {/* Search Input */}
             <div className="relative w-full sm:max-w-md">
@@ -297,7 +339,7 @@ export default function Rooms() {
               ))}
             </div>
           ) : sortedListings.length === 0 ? (
-            <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-850 rounded-[28px] py-16 px-6 text-center shadow-sm">
+            <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-850 rounded-[28px] py-16 px-6 text-center shadow-sm animate-scale-in">
               <div className="text-slate-300 dark:text-slate-700 flex justify-center mb-4">
                 <MapPin className="w-16 h-16 stroke-[1]" />
               </div>
@@ -314,8 +356,14 @@ export default function Rooms() {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-              {sortedListings.map((room) => (
-                <RoomCard key={room.id} listing={room} />
+              {sortedListings.map((room, index) => (
+                <div 
+                  key={room.id} 
+                  className="opacity-0 animate-fade-in-up" 
+                  style={{ animationDelay: `${(index % 6) * 75}ms` }}
+                >
+                  <RoomCard listing={room} />
+                </div>
               ))}
             </div>
           )}

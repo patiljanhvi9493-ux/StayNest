@@ -57,20 +57,20 @@ export default function Home() {
             <ShieldCheck className="w-3.5 h-3.5" /> <span>Verified student rental portal</span>
           </span>
 
-          <h1 className="font-outfit font-extrabold text-4xl sm:text-5xl lg:text-7xl leading-tight tracking-tight text-white mb-6">
+          <h1 className="font-outfit font-extrabold text-4xl sm:text-5xl lg:text-7xl leading-tight tracking-tight text-white mb-6 animate-fade-in-up">
             Find Your Perfect Room, <br className="hidden sm:inline" />
             <span className="bg-gradient-to-r from-primary-400 via-brand-rose-400 to-amber-300 bg-clip-text text-transparent">PG & Mess Facilities</span> Near You
           </h1>
           
-          <p className="text-slate-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed mb-10">
+          <p className="text-slate-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed mb-10 animate-fade-in-up delay-100">
             Verified Rooms • Trusted Owners • Roommate Matching • Daily Mess Subscriptions. <br />
             Explore accommodations within walking distance to your campus or workplace.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4 mb-16">
+          <div className="flex flex-wrap justify-center gap-4 mb-16 animate-fade-in-up delay-200">
             <Link
               to="/rooms"
-              className="px-8 py-3.5 text-sm font-bold rounded-2xl bg-primary-500 hover:bg-primary-600 shadow-lg shadow-primary-500/20 transition-all transform hover:-translate-y-0.5"
+              className="px-8 py-3.5 text-sm font-bold rounded-2xl bg-primary-500 hover:bg-primary-600 shadow-lg shadow-primary-500/20 transition-all transform hover:-translate-y-0.5 hover:shadow-xl"
             >
               Find Room
             </Link>
@@ -89,7 +89,7 @@ export default function Home() {
           </div>
 
           {/* Search Console Overlay */}
-          <div className="max-w-5xl mx-auto -mb-28 lg:-mb-40 transition-all">
+          <div className="max-w-5xl mx-auto -mb-28 lg:-mb-40 transition-all animate-fade-in-up delay-300">
             <form 
               onSubmit={handleSearch}
               className="glass p-5 sm:p-6 rounded-[32px] shadow-2xl flex flex-col space-y-4 text-slate-800 dark:text-slate-200"
@@ -186,11 +186,47 @@ export default function Home() {
               {/* Submit search button */}
               <button
                 type="submit"
-                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-primary-600 to-brand-rose-500 hover:from-primary-500 hover:to-brand-rose-400 text-white font-bold text-sm flex items-center justify-center space-x-2 shadow-lg shadow-primary-500/20"
+                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-primary-600 to-brand-rose-500 hover:from-primary-500 hover:to-brand-rose-400 text-white font-bold text-sm flex items-center justify-center space-x-2 shadow-lg shadow-primary-500/20 transition-all hover:scale-[1.01]"
               >
                 <Search className="w-4.5 h-4.5" />
                 <span>Search Stays</span>
               </button>
+
+              {/* Quick Searches */}
+              <div className="flex flex-wrap items-center gap-2 pt-2 px-1 text-left">
+                <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Popular Searches:</span>
+                {[
+                  { label: 'COEP Stays (Pune)', city: 'Pune', college: 'COEP' },
+                  { label: 'Mumbai Girls PG', city: 'Mumbai', type: 'PG', gender: 'Girls' },
+                  { label: 'Veg Messes Pune', city: 'Pune', type: 'Mess', food: 'Veg' },
+                  { label: 'Hostels under ₹6000', city: 'Pune', budget: '6000', type: 'Hostel' }
+                ].map((tag, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => {
+                      if (tag.type === 'Mess') {
+                        const params = new URLSearchParams();
+                        if (tag.city) params.append('city', tag.city);
+                        if (tag.food) params.append('food', tag.food);
+                        navigate(`/messes?${params.toString()}`);
+                      } else {
+                        const params = new URLSearchParams();
+                        if (tag.city) params.append('city', tag.city);
+                        if (tag.area) params.append('area', tag.area);
+                        if (tag.college) params.append('college', tag.college);
+                        if (tag.budget) params.append('budget', tag.budget);
+                        if (tag.type) params.append('type', tag.type);
+                        if (tag.gender) params.append('gender', tag.gender);
+                        navigate(`/rooms?${params.toString()}`);
+                      }
+                    }}
+                    className="text-[10px] font-bold px-3 py-1.5 rounded-xl border border-slate-200/60 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 hover:border-primary-500 hover:text-primary-500 hover:bg-white dark:hover:bg-slate-900 transition-all cursor-pointer"
+                  >
+                    {tag.label}
+                  </button>
+                ))}
+              </div>
             </form>
           </div>
 

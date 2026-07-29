@@ -158,12 +158,13 @@ export default function RoomDetails() {
       </div>
 
       {/* Grid Image Gallery */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-        <div className="md:col-span-2 aspect-[16/10] overflow-hidden rounded-[28px] bg-slate-100 dark:bg-slate-800 border border-slate-200/50 dark:border-slate-800/80">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 animate-fade-in">
+        <div className="md:col-span-2 aspect-[16/10] overflow-hidden rounded-[28px] bg-slate-100 dark:bg-slate-800 border border-slate-200/50 dark:border-slate-800/80 shadow-md">
           <img 
+            key={activeImage}
             src={activeImage} 
             alt="Room View" 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover animate-fade-in"
           />
         </div>
         
@@ -523,8 +524,14 @@ export default function RoomDetails() {
             Similar Suggested Accommodation
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {suggestedRooms.map((room) => (
-              <RoomCard key={room.id} listing={room} />
+            {suggestedRooms.map((room, index) => (
+              <div 
+                key={room.id} 
+                className="opacity-0 animate-fade-in-up" 
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <RoomCard listing={room} />
+              </div>
             ))}
           </div>
         </div>

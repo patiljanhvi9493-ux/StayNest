@@ -167,7 +167,7 @@ export default function Chatbot() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="w-[350px] sm:w-[380px] h-[520px] rounded-3xl bg-white dark:bg-slate-900 shadow-2xl border border-slate-100 dark:border-slate-800 flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+        <div className="w-[350px] sm:w-[380px] h-[520px] rounded-3xl bg-white dark:bg-slate-900 shadow-2xl border border-slate-100 dark:border-slate-800 flex flex-col overflow-hidden animate-scale-in">
           
           {/* Chat Header */}
           <div className="bg-gradient-to-r from-primary-600 to-brand-rose-500 p-4 text-white flex justify-between items-center">
@@ -194,7 +194,10 @@ export default function Chatbot() {
           {/* Messages Log */}
           <div className="flex-grow p-4 overflow-y-auto space-y-4 bg-slate-50/50 dark:bg-slate-950/40">
             {messages.map((msg, index) => (
-              <div key={index} className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}>
+              <div 
+                key={index} 
+                className={`flex flex-col opacity-0 animate-fade-in-up ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}
+              >
                 
                 {/* Message Bubble */}
                 <div className={`flex items-start max-w-[85%] space-x-2 ${msg.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>

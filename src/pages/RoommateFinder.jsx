@@ -19,6 +19,16 @@ export default function RoommateFinder() {
   const [userFood, setUserFood] = useState('Veg');
 
   const [connectedRoommates, setConnectedRoommates] = useState([]);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+  // Trigger analysis simulation whenever user survey options change
+  useEffect(() => {
+    setIsAnalyzing(true);
+    const timer = setTimeout(() => {
+      setIsAnalyzing(false);
+    }, 600);
+    return () => clearTimeout(timer);
+  }, [userGender, userBudget, userSleep, userStudy, userSmoke, userDrink, userFood]);
 
   // Calculate compatibility score (out of 100)
   const calculateScore = (roommate) => {
@@ -228,94 +238,123 @@ export default function RoommateFinder() {
             </span>
           </div>
 
-          <div className="space-y-4">
-            {matchedRoommates.map((person) => {
-              const isConnected = connectedRoommates.includes(person.id);
-              return (
-                <div 
-                  key={person.id}
-                  className="bg-white dark:bg-slate-900 border border-slate-150/40 dark:border-slate-800 rounded-3xl p-5 shadow-sm hover:shadow-md transition-shadow flex flex-col sm:flex-row items-center sm:items-start justify-between gap-5 relative overflow-hidden group"
-                >
-                  {/* Compatibility Score Banner Badge */}
-                  <div className="absolute top-0 right-0 py-1.5 px-3 rounded-bl-2xl bg-gradient-to-tr from-primary-500 to-indigo-600 text-white font-outfit font-black text-xs">
-                    {person.compatibility}% Match
-                  </div>
+          {isAnalyzing ? (
+            <div className="bg-white dark:bg-slate-900 border border-slate-150/40 dark:border-slate-800 rounded-[32px] p-16 text-center shadow-sm flex flex-col items-center justify-center space-y-5 min-h-[400px] animate-scale-in">
+              <div className="relative w-16 h-16 flex items-center justify-center">
+                <div className="absolute inset-0 rounded-full border-2 border-primary-500/20 animate-radar" />
+                <div className="absolute inset-2 rounded-full border-2 border-brand-rose-500/30 animate-pulse" />
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary-500 to-brand-rose-500 flex items-center justify-center text-white shadow-lg shadow-primary-500/20">
+                  <Sparkles className="w-4 h-4 animate-pulse" />
+                </div>
+              </div>
+              <div className="space-y-1">
+                <h4 className="font-outfit font-extrabold text-sm text-slate-800 dark:text-white">Calculating Compatibility Index...</h4>
+                <p className="text-[11px] text-slate-400 max-w-xs leading-relaxed">
+                  Synthesizing sleep schedules, smoking/drinking tolerances, food diets, and campus proximities.
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {matchedRoommates.map((person, index) => {
+                const isConnected = connectedRoommates.includes(person.id);
+                return (
+                  <div 
+                    key={person.id}
+                    className="bg-white dark:bg-slate-900 border border-slate-150/40 dark:border-slate-800 rounded-[32px] p-5 shadow-sm hover:shadow-2xl hover:shadow-primary-500/5 dark:hover:shadow-primary-500/10 hover:-translate-y-1 transition-all duration-350 flex flex-col sm:flex-row items-center sm:items-start justify-between gap-5 relative overflow-hidden group opacity-0 animate-fade-in-up"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    {/* Compatibility Score Banner Badge */}
+                    <div className="absolute top-0 right-0 py-1.5 px-4 rounded-bl-2xl bg-gradient-to-tr from-primary-500 to-indigo-600 text-white font-outfit font-black text-xs shadow-sm">
+                      {person.compatibility}% Match
+                    </div>
 
-                  <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-3 sm:space-y-0 sm:space-x-4 text-center sm:text-left flex-grow">
-                    <img 
-                      src={person.avatar} 
-                      alt={person.name} 
-                      className="w-16 h-16 rounded-2xl object-cover ring-2 ring-primary-500/10 flex-shrink-0"
-                    />
-                    
-                    <div className="space-y-2">
-                      <div>
-                        <h3 className="font-outfit font-extrabold text-base text-slate-900 dark:text-white">
-                          {person.name}
-                        </h3>
-                        <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">
-                          {person.college !== 'None' ? person.college : `Professional at ${person.company}`}
+                    <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-3 sm:space-y-0 sm:space-x-4 text-center sm:text-left flex-grow">
+                      <img 
+                        src={person.avatar} 
+                        alt={person.name} 
+                        className="w-16 h-16 rounded-2xl object-cover ring-2 ring-primary-500/10 flex-shrink-0 group-hover:scale-105 transition-transform duration-500"
+                      />
+                      
+                      <div className="space-y-2.5 flex-grow">
+                        <div>
+                          <h3 className="font-outfit font-extrabold text-base text-slate-900 dark:text-white">
+                            {person.name}
+                          </h3>
+                          <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">
+                            {person.college !== 'None' ? person.college : `Professional at ${person.company}`}
+                          </p>
+                        </div>
+
+                        <p className="text-xs text-slate-500 dark:text-slate-400 italic max-w-md">
+                          "{person.bio}"
                         </p>
-                      </div>
 
-                      <p className="text-xs text-slate-500 dark:text-slate-400 italic">
-                        "{person.bio}"
-                      </p>
+                        {/* Visual compatibility progress bar */}
+                        <div className="space-y-1 max-w-sm pt-1">
+                          <div className="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                            <div 
+                              className="h-full bg-gradient-to-r from-primary-500 to-brand-rose-500 rounded-full transition-all duration-1000 ease-out" 
+                              style={{ width: `${person.compatibility}%` }}
+                            />
+                          </div>
+                        </div>
 
-                      {/* Micro attributes tags */}
-                      <div className="flex flex-wrap gap-1.5 justify-center sm:justify-start">
-                        <span className="px-2 py-0.5 rounded-lg text-[9px] font-bold bg-slate-50 dark:bg-slate-800 border text-slate-505">
-                          Budget: ₹{person.budget}/mo
-                        </span>
-                        <span className="px-2 py-0.5 rounded-lg text-[9px] font-bold bg-slate-50 dark:bg-slate-800 border text-slate-505">
-                          {person.sleepSchedule}
-                        </span>
-                        <span className="px-2 py-0.5 rounded-lg text-[9px] font-bold bg-slate-50 dark:bg-slate-800 border text-slate-505">
-                          {person.studyHabits}
-                        </span>
-                        <span className="px-2 py-0.5 rounded-lg text-[9px] font-bold bg-slate-50 dark:bg-slate-800 border text-slate-505">
-                          Diet: {person.foodPreference}
-                        </span>
+                        {/* Micro attributes tags */}
+                        <div className="flex flex-wrap gap-1.5 justify-center sm:justify-start pt-1">
+                          <span className="px-2.5 py-1 rounded-lg text-[9px] font-bold bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-850 text-slate-555">
+                            Budget: ₹{person.budget}/mo
+                          </span>
+                          <span className="px-2.5 py-1 rounded-lg text-[9px] font-bold bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-850 text-slate-555">
+                            {person.sleepSchedule}
+                          </span>
+                          <span className="px-2.5 py-1 rounded-lg text-[9px] font-bold bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-850 text-slate-555">
+                            {person.studyHabits}
+                          </span>
+                          <span className="px-2.5 py-1 rounded-lg text-[9px] font-bold bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-850 text-slate-555">
+                            Diet: {person.foodPreference}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Actions */}
-                  <div className="flex-shrink-0 pt-2 sm:pt-6 flex flex-row sm:flex-col gap-2 w-full sm:w-auto">
-                    <button
-                      onClick={() => handleConnect(person.id, person.name)}
-                      className={`w-full sm:w-28 py-2.5 rounded-xl text-[10px] font-bold flex items-center justify-center space-x-1 transition-all ${
-                        isConnected 
-                          ? 'bg-emerald-500 text-white shadow-sm shadow-emerald-500/10' 
-                          : 'bg-primary-600 hover:bg-primary-500 text-white shadow-sm hover:shadow-md'
-                      }`}
-                    >
-                      {isConnected ? (
-                        <>
-                          <Check className="w-3 h-3 stroke-[3]" />
-                          <span>Connected</span>
-                        </>
-                      ) : (
-                        <>
-                          <UserPlus className="w-3.5 h-3.5" />
-                          <span>Connect</span>
-                        </>
-                      )}
-                    </button>
-                    
-                    <button
-                      onClick={() => addNotification(`Simulating chat window opening with ${person.name}`)}
-                      className="w-full sm:w-28 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-[10px] font-bold hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-350 flex items-center justify-center space-x-1"
-                    >
-                      <MessageCircle className="w-3.5 h-3.5 text-slate-400" />
-                      <span>Message</span>
-                    </button>
-                  </div>
+                    {/* Actions */}
+                    <div className="flex-shrink-0 pt-2 sm:pt-6 flex flex-row sm:flex-col gap-2 w-full sm:w-auto">
+                      <button
+                        onClick={() => handleConnect(person.id, person.name)}
+                        className={`w-full sm:w-28 py-2.5 rounded-xl text-[10px] font-bold flex items-center justify-center space-x-1 transition-all cursor-pointer ${
+                          isConnected 
+                            ? 'bg-emerald-500 text-white shadow-sm shadow-emerald-500/10' 
+                            : 'bg-primary-600 hover:bg-primary-500 text-white shadow-sm hover:shadow-md'
+                        }`}
+                      >
+                        {isConnected ? (
+                          <>
+                            <Check className="w-3 h-3 stroke-[3]" />
+                            <span>Connected</span>
+                          </>
+                        ) : (
+                          <>
+                            <UserPlus className="w-3.5 h-3.5" />
+                            <span>Connect</span>
+                          </>
+                        )}
+                      </button>
+                      
+                      <button
+                        onClick={() => addNotification(`Simulating chat window opening with ${person.name}`)}
+                        className="w-full sm:w-28 py-2.5 rounded-xl border border-slate-200 dark:border-slate-850 text-[10px] font-bold hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-350 flex items-center justify-center space-x-1 cursor-pointer"
+                      >
+                        <MessageCircle className="w-3.5 h-3.5 text-slate-400" />
+                        <span>Message</span>
+                      </button>
+                    </div>
 
-                </div>
-              );
-            })}
-          </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
 
         </div>
 

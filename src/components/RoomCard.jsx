@@ -28,7 +28,7 @@ export default function RoomCard({ listing }) {
   };
 
   return (
-    <div className="group bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800/80 rounded-[28px] overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full relative">
+    <div className="group bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800/80 rounded-[28px] overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-primary-500/5 dark:hover:shadow-primary-500/10 hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full relative">
       
       {/* Thumbnail Area */}
       <div className="relative aspect-[4/3] overflow-hidden bg-slate-100 dark:bg-slate-800">
@@ -36,7 +36,7 @@ export default function RoomCard({ listing }) {
           src={listing.images[0]} 
           alt={listing.title} 
           loading="lazy"
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-550 ease-out"
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
         />
 
         {/* Rent Tag */}
@@ -154,7 +154,7 @@ export default function RoomCard({ listing }) {
             className="flex-grow inline-flex items-center justify-center space-x-1 px-3 py-2 text-xs font-bold text-white bg-slate-900 hover:bg-primary-600 dark:bg-slate-800 dark:hover:bg-primary-600 rounded-lg transition-colors shadow-sm"
           >
             <span>View Details</span>
-            <ExternalLink className="w-3 h-3" />
+            <ExternalLink className="w-3 h-3 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-300" />
           </Link>
         </div>
 
