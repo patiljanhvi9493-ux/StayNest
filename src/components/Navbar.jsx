@@ -53,23 +53,55 @@ export default function Navbar() {
     setProfileDropdownOpen(false);
     
     // Redirect to the correct page based on role
-    if (role === 'Owner') navigate('/owner-dashboard');
-    else if (role === 'Mess Owner') navigate('/mess-dashboard');
+    if (role === 'Owner') navigate('/provider-dashboard');
+    else if (role === 'Mess Owner') navigate('/provider-dashboard');
     else if (role === 'Admin') navigate('/admin');
-    else navigate('/profile');
+    else navigate('/seeker-dashboard');
   };
 
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Rooms', path: '/rooms' },
-    { name: 'PGs', path: '/pgs' },
-    { name: 'Messes', path: '/messes' },
-    { name: 'Nearby Services', path: '/nearby' },
-    { name: 'Roommate Finder', path: '/roommates' },
-    { name: 'Community', path: '/community' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
-  ];
+  const getNavLinks = () => {
+    if (user?.role === 'Student') {
+      return [
+        { name: 'Dashboard', path: '/seeker-dashboard' },
+        { name: 'Rooms', path: '/rooms' },
+        { name: 'PGs', path: '/pgs' },
+        { name: 'Messes', path: '/messes' },
+        { name: 'Nearby', path: '/nearby' },
+        { name: 'Roommates', path: '/roommates' },
+        { name: 'Compare', path: '/compare' },
+        { name: 'Community', path: '/community' },
+      ];
+    }
+    if (user?.role === 'Owner' || user?.role === 'Mess Owner') {
+      return [
+        { name: 'Dashboard', path: '/provider-dashboard' },
+        { name: 'Community', path: '/community' },
+        { name: 'About', path: '/about' },
+        { name: 'Contact', path: '/contact' },
+      ];
+    }
+    if (user?.role === 'Admin') {
+      return [
+        { name: 'Admin Panel', path: '/admin' },
+        { name: 'Rooms', path: '/rooms' },
+        { name: 'Messes', path: '/messes' },
+        { name: 'Community', path: '/community' },
+      ];
+    }
+    return [
+      { name: 'Home', path: '/' },
+      { name: 'Rooms', path: '/rooms' },
+      { name: 'PGs', path: '/pgs' },
+      { name: 'Messes', path: '/messes' },
+      { name: 'Nearby Services', path: '/nearby' },
+      { name: 'Roommate Finder', path: '/roommates' },
+      { name: 'Community', path: '/community' },
+      { name: 'About', path: '/about' },
+      { name: 'Contact', path: '/contact' },
+    ];
+  };
+
+  const navLinks = getNavLinks();
 
   return (
     <nav className="sticky top-0 z-50 w-full transition-all duration-300 border-b border-slate-200/50 dark:border-slate-800/50 backdrop-blur-md bg-white/80 dark:bg-slate-950/80">
@@ -211,32 +243,22 @@ export default function Navbar() {
                     <div className="p-1">
                       {user.role === 'Student' && (
                         <Link 
-                          to="/profile" 
+                          to="/seeker-dashboard" 
                           onClick={() => setProfileDropdownOpen(false)}
                           className="flex items-center space-x-2 px-3 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors"
                         >
                           <User className="w-4 h-4 text-slate-400" />
-                          <span>Student Profile</span>
+                          <span>Seeker Dashboard</span>
                         </Link>
                       )}
-                      {user.role === 'Owner' && (
+                      {(user.role === 'Owner' || user.role === 'Mess Owner') && (
                         <Link 
-                          to="/owner-dashboard" 
+                          to="/provider-dashboard" 
                           onClick={() => setProfileDropdownOpen(false)}
                           className="flex items-center space-x-2 px-3 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors"
                         >
                           <Shield className="w-4 h-4 text-slate-400" />
-                          <span>Owner Dashboard</span>
-                        </Link>
-                      )}
-                      {user.role === 'Mess Owner' && (
-                        <Link 
-                          to="/mess-dashboard" 
-                          onClick={() => setProfileDropdownOpen(false)}
-                          className="flex items-center space-x-2 px-3 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors"
-                        >
-                          <Shield className="w-4 h-4 text-slate-400" />
-                          <span>Mess Dashboard</span>
+                          <span>Provider Dashboard</span>
                         </Link>
                       )}
                       {user.role === 'Admin' && (

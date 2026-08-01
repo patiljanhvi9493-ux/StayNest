@@ -22,6 +22,8 @@ import LoginRegister from './pages/LoginRegister';
 import Profile from './pages/Profile';
 import OwnerDashboard from './pages/OwnerDashboard';
 import MessDashboard from './pages/MessDashboard';
+import SeekerDashboard from './pages/SeekerDashboard';
+import ProviderDashboard from './pages/ProviderDashboard';
 import AdminPanel from './pages/AdminPanel';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -56,8 +58,10 @@ export default function App() {
               <Route path="/compare" element={<Compare />} />
               <Route path="/login" element={<LoginRegister />} />
               <Route path="/profile" element={<Profile />} />
-              <Route path="/owner-dashboard" element={<OwnerDashboard />} />
-              <Route path="/mess-dashboard" element={<MessDashboard />} />
+              <Route path="/seeker-dashboard" element={<SeekerDashboard />} />
+              <Route path="/provider-dashboard" element={<ProviderDashboard />} />
+              <Route path="/owner-dashboard" element={<ProviderDashboard />} />
+              <Route path="/mess-dashboard" element={<ProviderDashboard />} />
               <Route path="/admin" element={<AdminPanel />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
